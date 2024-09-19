@@ -1,0 +1,217 @@
+<h2>User Details</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Department</th>
+      <th>Salary</th>
+      <th>Joining Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.department}}</td>
+      <td>{{user.salary}}</td>
+      <td>{{user.joiningDate}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Temperature Conversion -->
+<h2>Convert Fahrenheit to Celsius</h2>
+<label>Enter value in Fahrenheit: </label>
+<input type="number" [(ngModel)]="fahrenheit">
+<p>Temperature in Celsius: {{ fahrenheit | tempconv: 'C' }}</p>
+
+<h2>Convert Celsius to Fahrenheit</h2>
+<label>Enter value in Celsius: </label>
+<input type="number" [(ngModel)]="celsius">
+<p>Temperature in Fahrenheit: {{ celsius | tempconv: 'F' }}</p>
+
+<!-- Reverse String -->
+<h2>Reverse a String</h2>
+<p>The reverse of the string is: {{ exampleString | reverseString }}</p>
+<p>The reverse of the string in uppercase is: {{ exampleString | reverseString: true }}</p>
+
+<!-- Template-driven Form -->
+<h2>Template-Driven Form Example</h2>
+<form #fisempform="ngForm" (ngSubmit)="onSubmit(fisempform)">
+  <div>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" ngModel required>
+  </div>
+
+  <div>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" ngModel required>
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" ngModel required>
+  </div>
+
+  <div>
+    <label for="gender">Gender</label>
+    <input type="radio" name="gender" value="male" ngModel> Male
+    <input type="radio" name="gender" value="female" ngModel> Female
+  </div>
+
+  <div>
+    <label for="maritalStatus">Married</label>
+    <input type="checkbox" name="maritalStatus" ngModel>
+  </div>
+
+  <div>
+    <label for="country">Country</label>
+    <select id="country" name="country" ngModel>
+      <option value="USA">USA</option>
+      <option value="India">India</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="city">City</label>
+    <input type="text" id="city" name="city" ngModel>
+  </div>
+
+  <div>
+    <label for="street">Street</label>
+    <input type="text" id="street" name="street" ngModel>
+  </div>
+
+  <div>
+    <label for="pinCode">Pin Code</label>
+    <input type="text" id="pinCode" name="pinCode" ngModel>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<!-- Display the submitted data -->
+<div *ngIf="submittedData">
+  <h3>Submitted Data:</h3>
+  <p>First Name: {{ submittedData.firstName }}</p>
+  <p>Last Name: {{ submittedData.lastName }}</p>
+  <p>Email: {{ submittedData.email }}</p>
+  <p>Gender: {{ submittedData.gender }}</p>
+  <p>Married: {{ submittedData.maritalStatus ? 'Yes' : 'No' }}</p>
+  <p>Country: {{ submittedData.country }}</p>
+  <p>City: {{ submittedData.city }}</p>
+  <p>Street: {{ submittedData.street }}</p>
+  <p>Pin Code: {{ submittedData.pinCode }}</p>
+</div>
+
+<div class="container">
+  <h2>Sign Up</h2>
+  <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+    
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        class="form-control" 
+        required
+        [(ngModel)]="formData.email" 
+        name="email" 
+        #email="ngModel">
+      <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+        Email is required.
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        id="password" 
+        class="form-control" 
+        required
+        [(ngModel)]="formData.password" 
+        name="password" 
+        #password="ngModel">
+      <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+        Password is required.
+      </div>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input 
+        type="password" 
+        id="confirmPassword" 
+        class="form-control" 
+        required
+        [(ngModel)]="formData.confirmPassword" 
+        name="confirmPassword" 
+        #confirmPassword="ngModel">
+      <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="alert alert-danger">
+        Confirm password is required.
+      </div>
+    </div>
+
+    <!-- Gender -->
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select 
+        id="gender" 
+        class="form-control" 
+        required
+        [(ngModel)]="formData.gender" 
+        name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+    <!-- Terms -->
+    <div class="form-group">
+      <label>
+        <input 
+          type="checkbox" 
+          [(ngModel)]="formData.termsAccepted" 
+          name="termsAccepted" 
+          required>
+        Confirm that you've read the Terms and Conditions
+      </label>
+    </div>
+
+    <!-- Submit/Cancel buttons -->
+    <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid">Submit</button>
+    <button type="button" class="btn btn-secondary" (click)="onReset(signupForm)">Cancel</button>
+
+  </form>
+
+  <!-- Display form data in JSON format after submission -->
+  <div *ngIf="submitted">
+    <h3>Form Data Submitted</h3>
+    <pre>{{ formData | json }}</pre>
+  </div>
+
+
+
+  <!-- Debugging Form State -->
+  <h3>Debugging Form State</h3>
+  <p>Form value: <b>{{ signupForm.value | json }}</b></p>
+  
+</div>
+
+<div class=""container>
+  <h1>Welcome to the order management system
+
+  </h1>
+  <app-orderform></app-orderform>
+</div>
+
+<app-example-form></app-example-form>
+<div>
+  <h1>{{title}}</h1>
+  <app-parent></app-parent>
+</div>

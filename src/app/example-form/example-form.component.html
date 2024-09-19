@@ -1,0 +1,77 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" formControlName="name" class="form-control">
+    <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-danger">
+      Name is required and can only contain letters and spaces.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" formControlName="username" class="form-control">
+    <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="text-danger">
+      Username should be between 4 to 16 characters and must not contain special characters.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" formControlName="email" class="form-control">
+    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-danger">
+      Please enter a valid email address.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input type="text" id="address" formControlName="address" class="form-control">
+    <div *ngIf="form.get('address')?.invalid && form.get('address')?.touched" class="text-danger">
+      Address is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password" class="form-control">
+    <div *ngIf="form.get('password')?.errors?.['passwordStrength'] && form.get('password')?.touched" class="text-danger">
+      Password should be at least 8 characters long and include at least 1 letter, 1 number, and 1 special character.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="birthday">Birthday</label>
+    <input type="date" id="birthday" formControlName="birthday" class="form-control">
+    <div *ngIf="form.get('birthday')?.invalid && form.get('birthday')?.touched" class="text-danger">
+      Please select your date of birth.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="country">Country</label>
+    <select id="country" formControlName="country" class="form-control">
+      <option value="India">India</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Gender:</label><br>
+    <input type="radio" id="male" formControlName="gender" value="Male">
+    <label for="male">Male</label>
+    <input type="radio" id="female" formControlName="gender" value="Female">
+    <label for="female">Female</label>
+    <input type="radio" id="other" formControlName="gender" value="Other">
+    <label for="other">Other</label>
+  </div>
+
+  <div class="form-group">
+    <input type="checkbox" id="terms" formControlName="terms">
+    <label for="terms">I agree with the rules</label>
+    <div *ngIf="form.get('terms')?.invalid && form.get('terms')?.touched" class="text-danger">
+      You must agree to the terms and conditions.
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
