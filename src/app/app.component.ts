@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, EventEmitter } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
 import { TempconvPipe } from './mypipes/tempconv.pipe'; 
 import { ReverseStringPipe } from './mypipes/reverseString.pipe';
-// import { OrderFormComponent } from './orderform/orderform.component';
 import { OrderformComponent } from './orderform/orderform.component';
 import { ExampleFormComponent } from './example-form/example-form.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
+import { C10Component } from './c10/c10.component';
+import { P10Component } from './p10/p10.component';
+import { PythonComponent } from './python/python.component';
+import { CComponent } from './c/c.component';
+import { JavaComponent } from './java/java.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule,ExampleFormComponent,ParentComponent, FormsModule, TempconvPipe, ReverseStringPipe,ChildComponent, OrderformComponent],  // Add FormsModule and Pipes here
+  imports: [RouterOutlet, CommonModule, P10Component, C10Component,ExampleFormComponent,CComponent,JavaComponent,PythonComponent,ParentComponent, FormsModule, TempconvPipe, ReverseStringPipe,ChildComponent, OrderformComponent],  // Add FormsModule and Pipes here
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -77,9 +81,12 @@ export class AppComponent {
   onReset(form: any) {
     form.resetForm();  // Resets form data
     this.submitted = false;  // Resets the submitted state
-
-
   }
 
+  constructor(private router: Router) {}
+
+  onSelectLanguage(lang: string) {
+    this.router.navigate([lang]);
+  }
   title='Component Communication Example';
 }

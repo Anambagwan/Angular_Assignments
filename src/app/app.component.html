@@ -108,17 +108,11 @@
 <div class="container">
   <h2>Sign Up</h2>
   <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
-    
+
     <!-- Email -->
     <div class="form-group">
       <label for="email">Email</label>
-      <input 
-        type="email" 
-        id="email" 
-        class="form-control" 
-        required
-        [(ngModel)]="formData.email" 
-        name="email" 
+      <input type="email" id="email" class="form-control" required [(ngModel)]="formData.email" name="email"
         #email="ngModel">
       <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
         Email is required.
@@ -128,13 +122,7 @@
     <!-- Password -->
     <div class="form-group">
       <label for="password">Password</label>
-      <input 
-        type="password" 
-        id="password" 
-        class="form-control" 
-        required
-        [(ngModel)]="formData.password" 
-        name="password" 
+      <input type="password" id="password" class="form-control" required [(ngModel)]="formData.password" name="password"
         #password="ngModel">
       <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
         Password is required.
@@ -144,14 +132,8 @@
     <!-- Confirm Password -->
     <div class="form-group">
       <label for="confirmPassword">Confirm Password</label>
-      <input 
-        type="password" 
-        id="confirmPassword" 
-        class="form-control" 
-        required
-        [(ngModel)]="formData.confirmPassword" 
-        name="confirmPassword" 
-        #confirmPassword="ngModel">
+      <input type="password" id="confirmPassword" class="form-control" required [(ngModel)]="formData.confirmPassword"
+        name="confirmPassword" #confirmPassword="ngModel">
       <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="alert alert-danger">
         Confirm password is required.
       </div>
@@ -160,12 +142,7 @@
     <!-- Gender -->
     <div class="form-group">
       <label for="gender">Gender</label>
-      <select 
-        id="gender" 
-        class="form-control" 
-        required
-        [(ngModel)]="formData.gender" 
-        name="gender">
+      <select id="gender" class="form-control" required [(ngModel)]="formData.gender" name="gender">
         <option value="Male">Male</option>
         <option value="Female">Female</option>
       </select>
@@ -174,11 +151,7 @@
     <!-- Terms -->
     <div class="form-group">
       <label>
-        <input 
-          type="checkbox" 
-          [(ngModel)]="formData.termsAccepted" 
-          name="termsAccepted" 
-          required>
+        <input type="checkbox" [(ngModel)]="formData.termsAccepted" name="termsAccepted" required>
         Confirm that you've read the Terms and Conditions
       </label>
     </div>
@@ -200,10 +173,10 @@
   <!-- Debugging Form State -->
   <h3>Debugging Form State</h3>
   <p>Form value: <b>{{ signupForm.value | json }}</b></p>
-  
+
 </div>
 
-<div class=""container>
+<div class="" container>
   <h1>Welcome to the order management system
 
   </h1>
@@ -214,4 +187,17 @@
 <div>
   <h1>{{title}}</h1>
   <app-parent></app-parent>
+</div>
+
+<app-p10></app-p10>
+<app-c10></app-c10>
+
+<div>
+  <h1>Angular Router App</h1>
+  <select (change)="onSelectLanguage($event.target.value)">
+    <option value="python">Python</option>
+    <option value="java">Java</option>
+    <option value="c">C</option>
+  </select>
+  <router-outlet></router-outlet>
 </div>

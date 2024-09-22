@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-
 @Component({
   selector: 'app-parent',
   standalone: true,
@@ -15,19 +14,3 @@ export class ParentComponent {
     this.items.push(item);
   }
 }
-
-
-
-
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-parent',
-//   standalone: true,
-//   imports: [],
-//   templateUrl: './parent.component.html',
-//   styleUrl: './parent.component.css'
-// })
-// export class ParentComponent {
-
-// }
